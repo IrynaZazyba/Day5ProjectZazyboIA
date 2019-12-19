@@ -136,7 +136,7 @@ public class Array implements Iterable<Integer> {
         if (nextSetableIndex != array1.nextSetableIndex) return false;
         if (size != array1.size) return false;
         if (array == null) {
-            if (array1.array != null) return false;
+            return array==array1.array;
         }
         if (array.length != array1.length) return false;
         for (int i = 0; i < array.length; i++) {
