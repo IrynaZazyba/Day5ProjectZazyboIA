@@ -5,6 +5,7 @@ import by.javatr.task3.dao.factory.DAOFactory;
 import by.javatr.task3.exception.DAOException;
 import by.javatr.task3.exception.FileServiceReciverException;
 import by.javatr.task3.exception.NullTextException;
+import by.javatr.task3.validator.Validator;
 
 public class DataFileServiceReceiver {
 
@@ -13,7 +14,7 @@ public class DataFileServiceReceiver {
         String str;
         try {
             str = (String) DAOFactory.getInstance().getFileDAO().read();
-            if (str == null) {
+            if (Validator.isStringEmpty(str)) {
                 throw new NullTextException("No text from file to process.");
             }
         } catch (DAOException ex) {
@@ -26,7 +27,7 @@ public class DataFileServiceReceiver {
     public static String getDataFromConsole() throws NullTextException {
 
         String str = DataScanner.enterStringFromConsole();
-        if (str.length() == 0) {
+        if (Validator.isStringEmpty(str)) {
             throw new NullTextException("No text from console to process.");
         } else {
            return str;

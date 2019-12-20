@@ -28,7 +28,6 @@ public class Runner {
             PrintArray.printArray(arrayFromFile);
 
 
-
         } catch ( NotPositiveNumber|NullDataException | FileServiceReceiverException e) {
             System.out.println(e.getMessage());
         }
