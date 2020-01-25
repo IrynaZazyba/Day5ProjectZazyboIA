@@ -193,7 +193,6 @@ public class ArrayService {
             throw new EmptyArrayException("Array is empty.");
         }
         Array a = new Array();
-        boolean result = false;
         for (int i = 0; i < array.getLength(); i++) {
             Array arrayFromNumber = getArrayFromNumber(array.getElement(i));
             if (arrayFromNumber.getLength() == 3) {

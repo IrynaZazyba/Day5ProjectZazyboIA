@@ -12,7 +12,7 @@ public class Array implements Iterable<Integer> {
     private int[] array;
 
     private int length;
-    private int nextSetableIndex;
+    private int nextSettableIndex;
     private int size;
 
 
@@ -20,7 +20,7 @@ public class Array implements Iterable<Integer> {
         array = new int[element.length];
         for (int i = 0; i < element.length; i++) {
             array[i] = element[i];
-            nextSetableIndex++;
+            nextSettableIndex++;
         }
 
         length = element.length;
@@ -30,7 +30,7 @@ public class Array implements Iterable<Integer> {
     public Array() {
         array = new int[DEFAULT_SIZE];
         length = 0;
-        nextSetableIndex = 0;
+        nextSettableIndex = 0;
         size = DEFAULT_SIZE;
     }
 
@@ -61,7 +61,7 @@ public class Array implements Iterable<Integer> {
 
     public void setElement(int index, int element) throws NoSuchIndexException {
         if (index > length - 1) {
-            throw new NoSuchIndexException("The requested nextSetableIndex goes beyond the bounds of the array");
+            throw new NoSuchIndexException("The requested nextSettableIndex goes beyond the bounds of the array");
         }
         for (int i = 0; i < length; i++) {
             if (index == i) {
@@ -73,7 +73,7 @@ public class Array implements Iterable<Integer> {
                 }
                 array[index] = element;
                 length++;
-                this.nextSetableIndex++;
+                this.nextSettableIndex++;
                 break;
             }
         }
@@ -82,27 +82,25 @@ public class Array implements Iterable<Integer> {
 
     public void replaceElement(int index, int element) throws NoSuchIndexException {
         if (index > length - 1) {
-            throw new NoSuchIndexException("The requested nextSetableIndex goes beyond the bounds of the array");
+            throw new NoSuchIndexException("The requested nextSettableIndex goes beyond the bounds of the array");
         }
         array[index] = element;
     }
 
     public boolean addElement(int element) {
-        int[] newArray;
-        if (nextSetableIndex >= length) {
+        if (nextSettableIndex >= length) {
             increaseArrayLength();
         }
-        array[nextSetableIndex] = element;
-        nextSetableIndex++;
+        array[nextSettableIndex] = element;
+        nextSettableIndex++;
         length++;
-        size = array.length;
         return true;
     }
 
     private void increaseArrayLength() {
         int[] newArray;
-        newArray = new int[size + 10];
-        size = size + 10;
+        newArray = new int[size + DEFAULT_SIZE];
+        size = size + DEFAULT_SIZE;
         for (int i = 0; i < length; i++) {
             newArray[i] = array[i];
         }
@@ -121,7 +119,7 @@ public class Array implements Iterable<Integer> {
         }
         array[length - 1] = 0;
         length = length - 1;
-        --nextSetableIndex;
+        --nextSettableIndex;
         return true;
     }
 
@@ -133,7 +131,7 @@ public class Array implements Iterable<Integer> {
         if (getClass() != obj.getClass()) return false;
         Array array1 = (Array) obj;
         if (length != array1.length) return false;
-        if (nextSetableIndex != array1.nextSetableIndex) return false;
+        if (nextSettableIndex != array1.nextSettableIndex) return false;
         if (size != array1.size) return false;
         if (array == null) {
             return array==array1.array;
@@ -155,7 +153,7 @@ public class Array implements Iterable<Integer> {
         int result = 1;
         result = prime * result + length;
         result = prime * result + size;
-        result = prime * result + nextSetableIndex;
+        result = prime * result + nextSettableIndex;
         for (int i = 0; i < array.length; i++) {
             result = prime * result + array[i];
         }
@@ -177,7 +175,7 @@ public class Array implements Iterable<Integer> {
 
         return getClass().getName() + '@' +
                 ", length=" + length +
-                ", nextSetableIndex=" + nextSetableIndex +
+                ", nextSettableIndex=" + nextSettableIndex +
                 ", size=" + size +
                 ", array=" + sb;
 
