@@ -7,7 +7,7 @@ import java.io.*;
 
 public class FileArrayDAO implements DAO<Array> {
 
-    private final String PATH = "Array.txt";
+    private final String PATH = "resources/Array.txt";
 
     @Override
     public Array read() throws DAOException {

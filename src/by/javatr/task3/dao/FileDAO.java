@@ -7,7 +7,7 @@ import java.io.*;
 public class FileDAO implements DAO<String> {
 
 
-    private final String PATH = "Task.txt";
+    private final String PATH = "resources/Task.txt";
 
 
     @Override
